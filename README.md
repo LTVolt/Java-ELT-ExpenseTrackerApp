@@ -1,6 +1,6 @@
 # Java-ELT-ExpenseTrackerApp
 
-Major project using Java, this time combining the backend with a frontend for a full-stack approach.
+Project using Java, this time combining the backend with a frontend for a full-stack approach.
 
 Documents on how to use both the backend and the frontend will be on each respective folders, while this one will serve as documentation.
 
