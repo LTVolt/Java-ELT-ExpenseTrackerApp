@@ -233,6 +233,6 @@ As with before, the expense object must be created somehow, and you must pass in
       headers: { Authorization: `Bearer ${token}` },              // PLEASE DON'T FORGET TO CHECK SYNTAX HERE
     });
 ```
-
+Please note that these examples use JS, but you might be using something different: Translate as necessary.
 
 And that's it! End of documentation. For now.
