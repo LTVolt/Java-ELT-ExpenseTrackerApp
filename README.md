@@ -87,7 +87,7 @@ Without this, Spring won't know who is asking what they are asking.
 For this to run properly (and trust me, this next one gave me some headaches), we have our own SecurityConfig, where we configure the main Spring Security class. This handles which routes are public (grr CORS), disables session states, plugs in the custom JWT filter and sets up the password encoding.
 
 Let's have a look:
-```
+```java
 http
   .csrf(csrf -> csrf.disable())                     // No CSRF needed for APIs
   .authorizeHttpRequests(auth -> auth
@@ -108,7 +108,7 @@ DTOs are used are in order to send clean and controlled data between the client 
 There are 4 types of DTOs in this project: AuthRequest, AuthResponse, ExpenseRequest and ExpenseResponse.
 
 Starting with AuthRequest, the purpose of this Data Transfer Object is to capute login or registration form input. This is generally done from the frontend's JSON, but can also be used through Postman or any similar application. Therefore, this DTO requires only a username and a password. Note: It is important NOT to pass the full User Entity directly, because that would expose internal fields such as the password hashes, the user's role and more. Here it is:
-```
+```java
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -120,7 +120,7 @@ public class AuthRequest {
 Note that to use these annotations, Lombok must be installed.
 
 Then comes AuthResponse, which only serves to return the generated JWT after login / register. It is sent back to the frontend so it can authenticate future requests. Here's how it looks like:
-```
+```java
 @Data
 @AllArgsConstructor
 public class AuthResponse {
@@ -130,7 +130,7 @@ public class AuthResponse {
 As you can see, all it does is return the relevant token, having passed the correct username and password through the appropriate AuthRequest.
 
 Next up is the ExpenseRequest. Similarly to AuthRequest, this accepts incoming data, just for Expenses. It is used when creating or updating expenses. Here's how it looks:
-```
+```java
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -145,7 +145,7 @@ public class ExpenseRequestDTO {
 This shows us that this validates the user's input. Note that the @NotNull annotation can be used in each variable to prevent bad data, but this is currently handled in the frontend's input fields - they don't accept null values OR values that do not correspond to the necessary type, and we do not expose the User - there is no User field. This is handled server-side through the current active token, and not from the form.
 
 Finally, ExpenseResponse. This one sends safe expense data back to the frontend. Here's how it looks:
-```
+```java
 @Data
 @Builder
 public class ExpenseResponseDTO {
@@ -172,7 +172,7 @@ And that's it for the backend!
 You thought this was going to be very long heh? Not really!
 As mentioned in this ending part of the Backend Documentation, the frontend for this app can look any way you want. You can name the files however you want and all that. However, there are a few things you must incorporate in your code, and those will be the only thing mentioned in this documentation:
 1. When going through a login process, you must do the following:
-```
+```javascript
       const res = await fetch("http://localhost:8080/api/auth/login", {  // Replace up to /api with your domain
         method: "POST",                                                    
         headers: { "Content-Type": "application/json" },                 // This is necessary
@@ -182,7 +182,7 @@ As mentioned in this ending part of the Backend Documentation, the frontend for 
 The username and password variables must be filled somehow. In my provided example, they are gotten through input fields.
 
 2. Similar when registering:
-```
+```javascript
       const res = await fetch("http://localhost:8080/api/auth/register", { // Replace up to /api with your domain
         method: "POST",
         headers: { "Content-Type": "application/json" },                   // This is necessary
@@ -190,7 +190,7 @@ The username and password variables must be filled somehow. In my provided examp
       });
 ```
 3. When adding expenses for the logged in user:
-```
+```javascript
     const res = await fetch("http://localhost:8080/api/expenses", { // Replace up to /api with your domain
       method: "POST",
       headers: {
@@ -203,13 +203,13 @@ The username and password variables must be filled somehow. In my provided examp
 As with before, the expense object must be created somehow, and you must pass in the proper relevant data of the correct type (String description, float amount, Date date, Enum category).
 
 4. Very similar with fetching the logged user's expenses:
-```
+```javascript
     const res = await fetch("http://localhost:8080/api/expenses", { // Replace up to /api with your domain
       headers: { Authorization: `Bearer ${token}` },                // This is necessary AND VERY IMPORTANT TO HAVE THE CORRECT SYNTAX
     });
 ```
 5. When deleting expenses:
-```
+```javascript
         await fetch(`http://localhost:8080/api/expenses/${id}`, {    // Replace up to /api with your domain
             method: 'DELETE',
             headers: { Authorization: `Bearer ${token}` },           // This is necessary AND VERY IMPORTANT TO HAVE THE CORRECT SYNTAX
@@ -217,7 +217,7 @@ As with before, the expense object must be created somehow, and you must pass in
         loadExpenses();
 ```
 6. And finally, when editing:
-```
+```javascript
                 await fetch(`http://localhost:8080/api/expenses/${id}`, {   // Replace up to /api with your domain
                     method: "PUT",
                     headers: {
@@ -228,7 +228,7 @@ As with before, the expense object must be created somehow, and you must pass in
                 });
 ```
 7. As a bonus, here's what you would do for getting the summary:
-```
+```javascript
     const res = await fetch(`http://localhost:8080/api/expenses/summary?month=${month}&year=${year}`, { // You know the drill by now
       headers: { Authorization: `Bearer ${token}` },              // PLEASE DON'T FORGET TO CHECK SYNTAX HERE
     });
