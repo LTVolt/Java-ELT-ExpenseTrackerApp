@@ -101,8 +101,68 @@ http
 ```
 This creates a fully stateless security system with no cookies, no sessions and every request must include a token. Now pay attention to line 4: having ("/**") allows all endpoints to request data. If you change this, any endpoint that doesn't fall in with what you passed WILL NOT allow ANY methods to be called, and will be blocked by CORS, EVEN IF THE METHODS HAVE THE @CrossOrigin ANNOTATION. Note that even with this, this annotation is STILL required.
 
-Congratulations, you've made it to the final section: the DTOs.
+Congratulations, you've made it to the final section of the Backend: the DTOs.
 
 DTOs are used are in order to send clean and controlled data between the client and the server, they also prevent overexposing internal data like Users and Expenses, and, last but not least, they make validation and serialization safer and clearer.
 
 There are 4 types of DTOs in this project: AuthRequest, AuthResponse, ExpenseRequest and ExpenseResponse.
+
+Starting with AuthRequest, the purpose of this Data Transfer Object is to capute login or registration form input. This is generally done from the frontend's JSON, but can also be used through Postman or any similar application. Therefore, this DTO requires only a username and a password. Note: It is important NOT to pass the full User Entity directly, because that would expose internal fields such as the password hashes, the user's role and more. Here it is:
+```
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AuthRequest {
+    private String username;
+    private String password;
+}
+```
+Note that to use these annotations, Lombok must be installed.
+
+Then comes AuthResponse, which only serves to return the generated JWT after login / register. It is sent back to the frontend so it can authenticate future requests. Here's how it looks like:
+```
+@Data
+@AllArgsConstructor
+public class AuthResponse {
+    private String token;
+}
+```
+As you can see, all it does is return the relevant token, having passed the correct username and password through the appropriate AuthRequest.
+
+Next up is the ExpenseRequest. Similarly to AuthRequest, this accepts incoming data, just for Expenses. It is used when creating or updating expenses. Here's how it looks:
+```
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ExpenseRequestDTO {
+
+    private String description;
+    private BigDecimal amount;
+    private LocalDate date;
+    private Category category;
+}
+```
+This shows us that this validates the user's input. Note that the @NotNull annotation can be used in each variable to prevent bad data, but this is currently handled in the frontend's input fields - they don't accept null values OR values that do not correspond to the necessary type, and we do not expose the User - there is no User field. This is handled server-side through the current active token, and not from the form.
+
+Finally, ExpenseResponse. This one sends safe expense data back to the frontend. Here's how it looks:
+```
+@Data
+@Builder
+public class ExpenseResponseDTO {
+    private Long id;
+    private String description;
+    private BigDecimal amount;
+    private LocalDate date;
+    private Category category;
+}
+```
+The Builder annotation serves the same purpose as the former NoArgs and AllArgs Constructors. This Response is used in the GET, POST and PUT methods used to fetch, add and edit expenses respectively. Now you might ask: why use this instead of just the Expense Object you already have? Well, this prevents serialization loops (such as User -> Expense -> User -> Expense...), it also avoids leaking IDs, and it keeps the frontend decoupled from the backend, meaning that you can just delete the entire frontend provided here and build your own that everything would work the same and not require any addiditonal steps / installations / anything.
+
+With all this said, this project's Architecture looks like this:
+```
+Frontend <---> Controller <---> DTO <---> Service <---> Entity <---> DB
+```
+The Frontend only ever sees or uses DTOs, the Entities stay inside backend layers, and the Services convert between DTO and Entity accordingly.
+
+
+And that's it for the backend!
