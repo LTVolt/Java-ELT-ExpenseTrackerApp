@@ -27,7 +27,7 @@ In the top right corner of the answer, you should see the code 200 OK, meaning t
 ```
 Yours will be different, even if you use the same credentials as I demonstrated here. Copy the result of the token's code, head to the Headers tab right below the URL, and add a Key of type Authorization, and the Value to be as follows: Bearer token. It MUST start with Bearer (Capital B!), have ONE space, and then the token.
 
-After this, had on to the /api/auth/login, use the POST method as well, leave the body unchanged (we want to login using those credentials) and press send. Again, you should have the 200 OK code, and Postman should give you another token. Here's mine:
+After this, had on to the /api/auth/login endpoint, use the POST method as well, leave the body unchanged (we want to login using those credentials) and press send. Again, you should have the 200 OK code, and Postman should give you another token. Here's mine:
 ```JSON
 {
     "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlciIsImlhdCI6MTc1NDA1ODM3MiwiZXhwIjoxNzU0MDk0MzcyfQ.D_Yw3ncPFAwqVKaVnckO8sksdXtof8yvrlGXZ1Ii8p4"
