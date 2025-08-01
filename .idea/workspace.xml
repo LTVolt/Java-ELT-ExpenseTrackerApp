@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3a6b906b-b2f1-43d6-86d5-d7a8472221c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/.package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/cors/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/cors/HISTORY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/cors/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/cors/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/cors/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/cors/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/object-assign/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/object-assign/license" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/object-assign/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/object-assign/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/vary/HISTORY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/vary/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/vary/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/vary/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/node_modules/vary/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/ExpensetrackerApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/controller/DemoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/controller/ExpenseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/dto/AuthRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/dto/AuthResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/dto/ExpenseRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/dto/ExpenseResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/model/Expense.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/repository/ExpenseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/security/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/security/SecurityConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/cptvolt/expensetracker/service/ExpenseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/java/com/cptvolt/expensetracker/ExpensetrackerApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/test/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;LTVolt&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/LTVolt/Java-ELT-ExpenseTrackerApp&quot;,
+    &quot;accountId&quot;: &quot;bac50440-fafc-4fcc-96d1-07924f28c5a3&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="30gFShCl4yfN7HuGFUib7R8jGXr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Java-ELT-ExpenseTrackerApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Java-ELT-ExpenseTrackerApp" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a6b906b-b2f1-43d6-86d5-d7a8472221c7" name="Changes" comment="" />
+      <created>1754041311045</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1754041311045</updated>
+    </task>
+    <servers />
+  </component>
+</project>
