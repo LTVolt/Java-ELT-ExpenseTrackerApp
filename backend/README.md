@@ -33,9 +33,9 @@ After this, had on to the /api/auth/login endpoint, use the POST method as well,
     "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlciIsImlhdCI6MTc1NDA1ODM3MiwiZXhwIjoxNzU0MDk0MzcyfQ.D_Yw3ncPFAwqVKaVnckO8sksdXtof8yvrlGXZ1Ii8p4"
 }
 ```
-As you can see, this one is a different token, as it will be used for your session. You are now logged into the system for 10 hours, or until you manually logged out. Copy this token and replace the one you have in the Headers tab. We won't be needing to change this anymore until our next session.
+As you can see, this one is a different token, as it will be used for your session. You are now logged into the system for 10 hours, or until you manually log out. Copy this token and replace the one you have in the Headers tab. We won't be needing to change this anymore until our next session.
 
-Now, head to the /api/expenses endpoint, use the GET methog, and send. You should have the 200 OK code again, and the answer should be an empty array ( [] ). This is true because this user does not have any expenses in their dashboard.
+Now, head to the /api/expenses endpoint, use the GET method, and send. You should have the 200 OK code again, and the answer should be an empty array ( [] ). This is true because this user does not have any expenses in their dashboard.
 
 So let's add one!
 
