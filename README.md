@@ -64,3 +64,45 @@ As for the ExpenseController:
 9. The filterByDateRange(@RequestParam("start") String start, @RequestParam("end") String end, Authentication authentication) method converts the passed strings to LocalDates with the DD-MM-YYYY format, and passes it to the Service for date filtering;
 10. The getSummary(@RequestParam("month") int month, @RequestParam("year") int year, Authentication authentication) method retuns the totals by Category.
 
+This way, the logic is kept out of the Controllers, DTOs are used for the appropriate I/O, they protect the endpoints by using Authentication context and they use REST conventions through clean paths, all while avoiding overexposing data (each user only sees their own expenses).
+
+Moving on to Security - the frontend walls. Here user authentication, token validation, endpoint securing and JWT wiring into Spring Security are handled.
+
+Starting with JwtService - this Service manages all JWT logic, from creating them to parsing them and validating their expiration and signature. Its core methods are:
+1. generateToken(String username) - This method creates a JWT with the subject equaling the username provided;
+2. extractUsername(String token) - This one parses the provided token and retuns the user it belongs to;
+3. isTokenValid(token, username) - This one checks if both provided parameters match, along with the expiry;
+4. getSignInKey() - Finally, this method generated the secret signing key from a Base64 String.
+5. As stated in the beginning of this document, we use HS256 - an HMAC-based signature algorithm to generate the tokens;
+6. The SECRET_KEY variable is the app's private signing key - MUST be 256+ bit, or else it doesn't work for HS256.
+
+Next up - the JwtAuthenticationFilter - this is a custom Spring Security filter that runs before every secured request, checks if the provided Authorization header has a valid JWT, and if yes, sets up the security context. So, in order it:
+1. Extracts the Authorization header;
+2. Pulls out the token;
+3. Validates it through JwtService;
+4. Gets the user through the DB;
+5. Sets the Spring Security context if everything checks out.
+Without this, Spring won't know who is asking what they are asking.
+
+For this to run properly (and trust me, this next one gave me some headaches), we have our own SecurityConfig, where we configure the main Spring Security class. This handles which routes are public (grr CORS), disables session states, plugs in the custom JWT filter and sets up the password encoding.
+
+Let's have a look:
+```
+http
+  .csrf(csrf -> csrf.disable())                     // No CSRF needed for APIs
+  .authorizeHttpRequests(auth -> auth
+      .requestMatchers("/**").permitAll()           // Allows all endpoints
+      .anyRequest().authenticated()                 // Everything else requires JWT
+  )
+  .sessionManagement(sess -> sess
+      .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+  )
+  .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+```
+This creates a fully stateless security system with no cookies, no sessions and every request must include a token. Now pay attention to line 4: having ("/**") allows all endpoints to request data. If you change this, any endpoint that doesn't fall in with what you passed WILL NOT allow ANY methods to be called, and will be blocked by CORS, EVEN IF THE METHODS HAVE THE @CrossOrigin ANNOTATION. Note that even with this, this annotation is STILL required.
+
+Congratulations, you've made it to the final section: the DTOs.
+
+DTOs are used are in order to send clean and controlled data between the client and the server, they also prevent overexposing internal data like Users and Expenses, and, last but not least, they make validation and serialization safer and clearer.
+
+There are 4 types of DTOs in this project: AuthRequest, AuthResponse, ExpenseRequest and ExpenseResponse.
