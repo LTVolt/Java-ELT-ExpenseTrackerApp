@@ -166,3 +166,73 @@ The Frontend only ever sees or uses DTOs, the Entities stay inside backend layer
 
 
 And that's it for the backend!
+
+**Frontend Documentation**
+
+You thought this was going to be very long heh? Not really!
+As mentioned in this ending part of the Backend Documentation, the frontend for this app can look any way you want. You can name the files however you want and all that. However, there are a few things you must incorporate in your code, and those will be the only thing mentioned in this documentation:
+1. When going through a login process, you must do the following:
+```
+      const res = await fetch("http://localhost:8080/api/auth/login", {  // Replace up to /api with your domain
+        method: "POST",                                                    
+        headers: { "Content-Type": "application/json" },                 // This is necessary
+        body: JSON.stringify({ username, password }),                    // This is necessary
+      });
+```
+The username and password variables must be filled somehow. In my provided example, they are gotten through input fields.
+
+2. Similar when registering:
+```
+      const res = await fetch("http://localhost:8080/api/auth/register", { // Replace up to /api with your domain
+        method: "POST",
+        headers: { "Content-Type": "application/json" },                   // This is necessary
+        body: JSON.stringify({ username, password }),                      // This is necessary
+      });
+```
+3. When adding expenses for the logged in user:
+```
+    const res = await fetch("http://localhost:8080/api/expenses", { // Replace up to /api with your domain
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",                         // This is necessary       
+        Authorization: `Bearer ${token}`,                           // This is necessary AND VERY IMPORTANT TO HAVE THE CORRECT SYNTAX
+      },
+      body: JSON.stringify(expense),                                // This is necessary 
+    });
+```
+As with before, the expense object must be created somehow, and you must pass in the proper relevant data of the correct type (String description, float amount, Date date, Enum category).
+
+4. Very similar with fetching the logged user's expenses:
+```
+    const res = await fetch("http://localhost:8080/api/expenses", { // Replace up to /api with your domain
+      headers: { Authorization: `Bearer ${token}` },                // This is necessary AND VERY IMPORTANT TO HAVE THE CORRECT SYNTAX
+    });
+```
+5. When deleting expenses:
+```
+        await fetch(`http://localhost:8080/api/expenses/${id}`, {    // Replace up to /api with your domain
+            method: 'DELETE',
+            headers: { Authorization: `Bearer ${token}` },           // This is necessary AND VERY IMPORTANT TO HAVE THE CORRECT SYNTAX
+        });
+        loadExpenses();
+```
+6. And finally, when editing:
+```
+                await fetch(`http://localhost:8080/api/expenses/${id}`, {   // Replace up to /api with your domain
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",                 // This is necessary 
+                        Authorization: `Bearer ${token}`,                   // This is necessary AND VERY IMPORTANT TO HAVE THE CORRECT SYNTAX
+                    },
+                    body: JSON.stringify(updatedExpense),
+                });
+```
+7. As a bonus, here's what you would do for getting the summary:
+```
+    const res = await fetch(`http://localhost:8080/api/expenses/summary?month=${month}&year=${year}`, { // You know the drill by now
+      headers: { Authorization: `Bearer ${token}` },              // PLEASE DON'T FORGET TO CHECK SYNTAX HERE
+    });
+```
+
+
+And that's it! End of documentation. For now.
