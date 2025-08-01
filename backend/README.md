@@ -19,7 +19,7 @@ In the body section, as the raw format, we must tell the backend what username a
 "password": "password123"
 }
 ```
-In the top left corner of the answer, you should see the code 200 OK, meaning that is worked, and you now have a register token. Mine looks like this:
+In the top right corner of the answer, you should see the code 200 OK, meaning that is worked, and you now have a register token. Mine looks like this:
 ```JSON
 {
     "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlciIsImlhdCI6MTc1NDA1ODE0NSwiZXhwIjoxNzU0MDk0MTQ1fQ.B1yDjpwSCpjMTof1JaW-8_N-0vBjxk_ojAP_AVns9nQ"
