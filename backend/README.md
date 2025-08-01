@@ -1,6 +1,8 @@
 
 This document details how to use the backend properly.
 
+Go to the application.properties file in the resources folder of the project.
+
 First off, you might want to comment out every line EXCEPT the first one. If you don't do that, since this project was made using Docker with Postgres as support for the Databases and Tables, it WILL NOT run. 
 Unless of course you create the appropriate Docker Container.
 
